@@ -1,5 +1,6 @@
 class FeedEntriesController < ApplicationController
-  before_filter :get_feed
+  load_and_authorize_resource :feed
+  load_and_authorize_resource :feed_entry, through: :feed
 
   # GET /feed_entries
   # GET /feed_entries.json
@@ -33,11 +34,5 @@ class FeedEntriesController < ApplicationController
       format.html { redirect_to feed_entries_url }
       format.json { head :no_content }
     end
-  end
-
-  private
-
-  def get_feed
-    @feed = Feed.find(params[:feed_id])
   end
 end

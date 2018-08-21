@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
 
   has_many :feeds
   has_many :feed_entries, through: :feeds
+
+  def admin?
+    self.role == 'admin'
+  end
 end

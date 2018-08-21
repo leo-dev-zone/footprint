@@ -5,6 +5,7 @@ gem 'mysql2'
 gem 'jquery-rails'
 gem 'devise'
 gem 'feedzirra'
+gem 'cancan'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
