@@ -1,4 +1,6 @@
 Footplate::Application.routes.draw do
+  resources :feeds
+
   get "home/index"
 
   devise_for :users
