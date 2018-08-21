@@ -1,4 +1,6 @@
 Footplate::Application.routes.draw do
+  resources :feed_entries
+
   resources :feeds
 
   get "home/index"
