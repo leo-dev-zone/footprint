@@ -1,18 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
-  <%= @feed_entry.name %>
+  <b>Title:</b>
+  <%= sanitize @feed_entry.title %>
 </p>
 
 <p>
   <b>Content:</b>
-  <%= @feed_entry.content %>
+  <%= sanitize @feed_entry.content %>
 </p>
 
 <p>
   <b>Url:</b>
-  <%= @feed_entry.url %>
+  <%= link_to 'URL', @feed_entry.url %>
 </p>
 
 <p>

@@ -2,9 +2,9 @@
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Content</th>
+    <th>Title</th>
     <th>Url</th>
+    <th>Author</th>
     <th>Published at</th>
     <th>Guid</th>
     <th>Feed</th>
@@ -15,9 +15,9 @@
 
 <% @feed_entries.each do |feed_entry| %>
   <tr>
-    <td><%= feed_entry.name %></td>
-    <td><%= feed_entry.content %></td>
-    <td><%= feed_entry.url %></td>
+    <td><%= sanitize feed_entry.title %></td>
+    <td><%= link_to 'URL', feed_entry.url %></td>
+    <td><%= sanitize feed_entry.author %></td>
     <td><%= feed_entry.published_at %></td>
     <td><%= feed_entry.guid %></td>
     <td><%= feed_entry.feed_id %></td>
