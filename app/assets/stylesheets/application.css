@@ -11,3 +11,8 @@
  *= require_self
  *= require_tree .
  */
+
+.hmenu {
+  float: right;
+  list-style-type: none;
+}
