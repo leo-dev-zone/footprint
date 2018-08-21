@@ -21,9 +21,9 @@
     <td><%= feed_entry.published_at %></td>
     <td><%= feed_entry.guid %></td>
     <td><%= feed_entry.feed_id %></td>
-    <td><%= link_to 'Show', feed_entry %></td>
-    <td><%= link_to 'Edit', edit_feed_entry_path(feed_entry) %></td>
-    <td><%= link_to 'Destroy', feed_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', [@feed, feed_entry] %></td>
+    <td><%= link_to 'Edit', edit_feed_feed_entry_path(@feed, feed_entry) %></td>
+    <td><%= link_to 'Destroy', [@feed, feed_entry], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
