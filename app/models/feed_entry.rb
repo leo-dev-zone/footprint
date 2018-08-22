@@ -2,21 +2,20 @@ class FeedEntry < ActiveRecord::Base
   attr_accessible :content, :guid, :title, :author, :published_at, :url, :bitly_link
 
   belongs_to :feed
-  belongs_to :user
 
-  def create_bitly_link
+  after_create :create_bitly_link_delayed
+
+  def create_bitly_link_delayed
+    Delayed::Job.enqueue BitlyShortenUrl.new(id)
+  end
+
+  def create_bitly_link(bitly_client)
     unless self.bitly_link
-      begin
-        update_attributes(bitly_link: bitly_client.shorten(url).short_url)
-      rescue BitlyError
-      end
+      update_attributes(bitly_link: bitly_client.shorten(url).short_url)
     end
   end
 
-  private
-
-  def bitly_client
-    Bitly.use_api_version_3
-    @bitly_client ||= Bitly.new(feed.user.bitly_username, feed.user.bitly_apikey)
+  def user
+    feed.user
   end
 end

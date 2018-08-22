@@ -9,6 +9,10 @@ gem 'cancan'
 gem 'draper'
 gem 'bitly'
 gem 'unicorn'
+gem 'delayed_job_active_record'
+gem 'delayed_job_web'
+gem 'daemons'
+gem 'kaminari'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

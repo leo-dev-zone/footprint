@@ -9,4 +9,6 @@ Footplate::Application.routes.draw do
 
   get "home/index"
   root :to => 'home#index'
+
+  match "/delayed_job" => DelayedJobWeb, :anchor => false
 end

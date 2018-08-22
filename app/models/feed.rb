@@ -4,8 +4,17 @@ class Feed < ActiveRecord::Base
   belongs_to :user
   has_many :feed_entries, dependent: :destroy
 
+  after_create :enqueue_fetching
+
+  FETCH_INTERVAR  = 5.minutes
+
+  def enqueue_fetching
+    Delayed::Job.enqueue FeedFetchingJob.new(id, FETCH_INTERVAR)
+  end
+
   def update_from_feed
     feed = Feedzirra::Feed.fetch_and_parse(url)
+    update_attributes(title: feed.title.sanitize)
     add_entries(feed.entries)
   end
 
