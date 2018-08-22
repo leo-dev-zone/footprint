@@ -125,13 +125,9 @@ before 'deploy:restart', 'deploy:compile_assets'
 before 'deploy:copy_code_to_release', 'deploy:make_release_dir'
 before 'deploy:restart', 'deploy:migrate_db'
 after 'deploy:migrate_db', 'deploy:rake_perms'
-#before 'deploy:migrate_db', 'deploy:symlink_database_yml'
 before 'deploy:symlink_database_yml', 'deploy:symlink_initializers'
-#after 'deploy:symlink_database_yml', 'deploy:symlink_beeing'
 after 'deploy:create_symlink', 'deploy:update_version'
-after 'deploy:create_symlink', 'deploy:symlink_stylesheets_less'
 after 'deploy:create_symlink', 'deploy:symlink_database_yml'
-#after 'deploy:create_symlink', 'deploy:symlink_dropbox_folder'
 
 after 'deploy:create_symlink', 'deploy:make_tmp_dirs'
 

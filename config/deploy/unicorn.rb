@@ -50,6 +50,7 @@ end
 
 after 'deploy:copy_code_to_release', 'unicorn:make_unicorn_dirs'
 #after 'deploy:symlink_pids_dir', 'unicorn:symlink_sockets_dir'
+before 'unicorn:start', 'unicorn:symlink_unicorn_config'
 before 'unicorn:restart', 'unicorn:symlink_unicorn_config'
 after 'deploy:make_tmp_dirs', 'unicorn:update_unicorn_symlinks'
 
