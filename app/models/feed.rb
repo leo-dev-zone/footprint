@@ -1,8 +1,8 @@
 class Feed < ActiveRecord::Base
-  attr_accessible :title, :url, :user_id
+  attr_accessible :title, :url
 
   belongs_to :user
-  has_many :feed_entries
+  has_many :feed_entries, dependent: :destroy
 
   def update_from_feed
     feed = Feedzirra::Feed.fetch_and_parse(url)
