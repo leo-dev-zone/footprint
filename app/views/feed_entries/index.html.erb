@@ -3,7 +3,8 @@
 <table>
   <tr>
     <th>Title</th>
-    <th>Url</th>
+    <th>Original Url</th>
+    <th>Bitly Url</th>
     <th>Author</th>
     <th>Published at</th>
     <th>Guid</th>
@@ -16,7 +17,8 @@
 <% @feed_entries.each do |feed_entry| %>
   <tr>
     <td><%= sanitize feed_entry.title %></td>
-    <td><%= link_to 'URL', feed_entry.url %></td>
+    <td><%= feed_entry.link_to_original %></td>
+    <td><%= feed_entry.link_to_bitly %></td>
     <td><%= sanitize feed_entry.author %></td>
     <td><%= feed_entry.published_at %></td>
     <td><%= feed_entry.guid %></td>

@@ -5,7 +5,7 @@ class FeedEntriesController < ApplicationController
   # GET /feed_entries
   # GET /feed_entries.json
   def index
-    @feed_entries = FeedEntry.all
+    @feed_entries = FeedEntryDecorator.decorate(@feed_entries)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,7 +16,7 @@ class FeedEntriesController < ApplicationController
   # GET /feed_entries/1
   # GET /feed_entries/1.json
   def show
-    @feed_entry = FeedEntry.find(params[:id])
+    @feed_entry = FeedEntryDecorator.decorate(@feed_entry)
 
     respond_to do |format|
       format.html # show.html.erb

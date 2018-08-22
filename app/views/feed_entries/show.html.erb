@@ -11,8 +11,13 @@
 </p>
 
 <p>
-  <b>Url:</b>
-  <%= link_to 'URL', @feed_entry.url %>
+  <b>Original Url:</b>
+  <%= @feed_entry.link_to_original %>
+</p>
+
+<p>
+  <b>Bitly Url:</b>
+  <%= @feed_entry.link_to_bitly %>
 </p>
 
 <p>

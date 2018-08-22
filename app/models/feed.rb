@@ -30,7 +30,7 @@ class Feed < ActiveRecord::Base
           author: entry.author.sanitize,
           url: entry.url.gsub('&#38;', '&'),
           published_at: entry.published,
-          guid: entry.id
+          guid: entry.id.split('/').last
         )
       end
     end
