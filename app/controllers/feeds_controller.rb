@@ -4,6 +4,7 @@ class FeedsController < ApplicationController
   # GET /feeds
   # GET /feeds.json
   def index
+    @feeds = FeedDecorator.decorate(@feeds)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @feeds }
@@ -13,6 +14,7 @@ class FeedsController < ApplicationController
   # GET /feeds/1
   # GET /feeds/1.json
   def show
+    @feed = FeedDecorator.decorate(@feed)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @feed }

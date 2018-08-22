@@ -1,5 +1,5 @@
 class Feed < ActiveRecord::Base
-  attr_accessible :url, :user_id
+  attr_accessible :title, :url, :user_id
 
   belongs_to :user
   has_many :feed_entries
@@ -12,7 +12,10 @@ class Feed < ActiveRecord::Base
   def self.update_all_from_feed
     feeds = Feedzirra::Feed.fetch_and_parse(Feed.all.map(&:url))
     feeds.each do |url, feed|
-      Feed.find_by_url(url).send(:add_entries, feed.entries)
+      Feed.find_by_url(url).tap do |db_feed|
+        db_feed.update_attributes(title: feed.title.sanitize)
+        db_feed.send(:add_entries, feed.entries)
+      end
     end
   end
 
