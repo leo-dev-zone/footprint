@@ -18,3 +18,7 @@ end
 group :test, :development do
   gem 'pry-rails'
 end
+
+group :development do
+	gem 'capistrano'
+end
