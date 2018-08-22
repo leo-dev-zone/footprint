@@ -8,6 +8,7 @@ gem 'feedzirra'
 gem 'cancan'
 gem 'draper'
 gem 'bitly'
+gem 'unicorn'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
