@@ -32,14 +32,15 @@ class Feed < ActiveRecord::Base
 
   def add_entries(entries)
     entries.each do |entry|
-      unless FeedEntry.exists?(guid: entry.id)
+      entry_guid = entry.id.split('/').last
+      unless FeedEntry.exists?(guid: entry_guid)
         feed_entries.create!(
           title: entry.title.sanitize,
           content: entry.content.sanitize,
           author: entry.author.sanitize,
           url: entry.url.gsub('&#38;', '&'),
           published_at: entry.published,
-          guid: entry.id.split('/').last
+          guid: entry_guid
         )
       end
     end
