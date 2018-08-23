@@ -22,16 +22,12 @@ class FeedsController < ApplicationController
 
   def create
     @feed.user = current_user
-    if @feed.save
-      flash[:notice] = 'Feed was successfully created.'
-    end
+    flash[:notice] = 'Feed was successfully created.' if @feed.save
     respond_with @feed
   end
 
   def update
-    if @feed.update_attributes(params[:feed])
-      flash[:notice] = 'Feed was successfully updated.'
-    end
+    flash[:notice] = 'Feed was successfully updated.' if @feed.update_attributes(params[:feed])
     respond_with @feed
   end
 
