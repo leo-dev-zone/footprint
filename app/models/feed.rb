@@ -38,7 +38,7 @@ class Feed < ActiveRecord::Base
   def add_entries(entries)
     entries.each do |entry|
       entry_guid = entry.id.split('/').last
-      unless FeedEntry.exists?(guid: entry_guid)
+      unless feed_entries.exists?(guid: entry_guid)
         feed_entries.create!(
           title: entry.title.sanitize,
           content: entry.content.sanitize,
