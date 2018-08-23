@@ -1,9 +1,6 @@
 Footplate::Application.routes.draw do
   resources :users, only: [:show]
-
-  resources :feeds do
-    resources :feed_entries
-  end
+  resources :feeds
 
   devise_for :users, path: :account
 
