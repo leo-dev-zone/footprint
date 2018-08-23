@@ -1,6 +1,9 @@
 class Feed < ActiveRecord::Base
   attr_accessible :title, :url
 
+  validates :user, :url, presence: true
+  validates :url, uniqueness: { scope: :user_id }
+
   belongs_to :user
   has_many :feed_entries, dependent: :destroy
 

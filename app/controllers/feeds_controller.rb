@@ -23,7 +23,7 @@ class FeedsController < ApplicationController
   def create
     @feed.user = current_user
     flash[:notice] = 'Feed was successfully created.' if @feed.save
-    respond_with @feed
+    respond_with(@feed, location: feeds_path)
   end
 
   def update

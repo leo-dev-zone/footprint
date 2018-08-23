@@ -20,12 +20,12 @@ class UsersController < ApplicationController
 
   def create
     flash[:notice] = 'User was successfully created.' if @user.save
-    respond_with @feed
+    respond_with @user
   end
 
   def update
     flash[:notice] = 'User was successfully created.' if @user.update_attributes(params[:user])
-    respond_with @feed
+    respond_with @user
   end
 
   def destroy

@@ -8,9 +8,12 @@
 </head>
 <body>
   <ul class="menu">
-    <li><%= link_to 'My feeds', root_path %></li>
-    <% if current_user.admin? %>
-      <li><%= link_to 'Users', users_path %></li>
+    <li><%= link_to 'Home', root_path %></li>
+    <% if current_user %>
+      <li><%= link_to 'My feeds', feeds_path %></li>
+      <% if current_user.admin? %>
+        <li><%= link_to 'Users', users_path %></li>
+      <% end %>
     <% end %>
     <%= render 'devise/menu/registration_items' %>
     <%= render 'devise/menu/login_items' %>
