@@ -17,8 +17,10 @@ class Feed < ActiveRecord::Base
 
   def update_from_feed
     feed = Feedzirra::Feed.fetch_and_parse(url)
-    update_attributes(title: feed.title.sanitize)
-    add_entries(feed.entries)
+    if feed
+      update_attributes(title: feed.title.sanitize)
+      add_entries(feed.entries)
+    end
   end
 
   def self.update_all_from_feed
