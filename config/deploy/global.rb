@@ -115,6 +115,10 @@ namespace :deploy do
 
 	task :finalize_update, :roles => :app do
 	end
+
+        task :seed, :roles => :app do
+          run "cd #{release_path} && RAILS_ENV=production bundle exec rake db:seed"
+        end
 end
 
 after 'deploy:setup', 'deploy:setup_code'

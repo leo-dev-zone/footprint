@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th>Email</th>
+    <th>Role</th>
     <th>Bitly username</th>
     <th>Bitly apikey</th>
     <th></th>
@@ -13,6 +14,7 @@
 <% @users.each do |user| %>
   <tr>
     <td><%= user.email %></td>
+    <td><%= user.role %></td>
     <td><%= user.bitly_username %></td>
     <td><%= user.bitly_apikey %></td>
     <td><%= link_to 'Show', user %></td>

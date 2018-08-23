@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   validates :email, :bitly_username, :bitly_apikey, presence: true
   validates :email, :uniqueness => true
+  validates :role, :inclusion => { :in => %w(user admin) }
 
   has_many :feeds, dependent: :destroy
   has_many :feed_entries, through: :feeds, dependent: :destroy

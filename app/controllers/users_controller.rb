@@ -19,11 +19,15 @@ class UsersController < ApplicationController
   end
 
   def create
+    role = params[:user].delete(:role)
+    @user.role = role if role && current_user.admin?
     flash[:notice] = 'User was successfully created.' if @user.save
     respond_with @user
   end
 
   def update
+    role = params[:user].delete(:role)
+    @user.role = role if role && current_user.admin?
     flash[:notice] = 'User was successfully created.' if @user.update_attributes(params[:user])
     respond_with @user
   end
