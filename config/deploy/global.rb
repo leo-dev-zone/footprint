@@ -4,9 +4,10 @@ load 'config/deploy/release'
 #load 'config/deploy/faye'
 #load 'config/deploy/memcache'
 require 'bundler/capistrano'
+require 'delayed/recipes'
 
 namespace :deploy do
-	
+
 	desc "compile assets"
 	task :compile_assets, :roles => :app do
 		run "cd #{release_path} && bundle exec rake assets:precompile"
@@ -124,10 +125,13 @@ before 'deploy:restart', 'deploy:create_cache_dir'
 before 'deploy:restart', 'deploy:compile_assets'
 before 'deploy:copy_code_to_release', 'deploy:make_release_dir'
 before 'deploy:restart', 'deploy:migrate_db'
-after 'deploy:migrate_db', 'deploy:rake_perms'
 before 'deploy:symlink_database_yml', 'deploy:symlink_initializers'
 after 'deploy:create_symlink', 'deploy:update_version'
 after 'deploy:create_symlink', 'deploy:symlink_database_yml'
+
+after "deploy:stop",    "delayed_job:stop"
+after "deploy:start",   "delayed_job:start"
+after "deploy:restart", "delayed_job:restart"
 
 after 'deploy:create_symlink', 'deploy:make_tmp_dirs'
 
