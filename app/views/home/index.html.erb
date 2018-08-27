@@ -1,17 +1,9 @@
 <%= paginate @feed_entries %>
 
-<table class="alerts">
-  <thead>
-    <th>Title</th>
-    <th>Original URL</th>
-    <th>Bitly URL</th>
-    <th>Author</th>
-    <th>Published At</th>
-    <th>Content</td>
-  </thead>
-  <tbody>
-    <%= render @feed_entries %>
-  </tbody>
-</table>
+<% if @feed_entries.any? %>
+  <%= render partial: 'feed_entries/table', locals: { feed_entries: @feed_entries } %>
+<% else %>
+  <%= link_to 'Create new feed', new_feed_path %>
+<% end %>
 
 <%= paginate @feed_entries %>

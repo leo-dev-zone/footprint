@@ -13,7 +13,7 @@
 <% @feeds.each do |feed| %>
   <tr>
     <td><%= feed.title %></td>
-    <td><%= feed.user_id %></td>
+    <td><%= feed.user %></td>
     <td><%= feed.url %></td>
     <td><%= link_to 'Show', feed %></td>
     <td><%= link_to 'Edit', edit_feed_path(feed) %></td>

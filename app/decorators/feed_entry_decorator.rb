@@ -14,4 +14,8 @@ class FeedEntryDecorator < Draper::Base
   def link_to_bitly
     feed_entry.bitly_link ? h.link_to('Bitly URL', feed_entry.bitly_link) : 'not obtained'
   end
+
+  def feed_title
+    feed_entry.feed.title.sub('Google Alerts - ', '')
+  end
 end
