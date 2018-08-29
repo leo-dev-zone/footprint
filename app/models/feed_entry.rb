@@ -1,5 +1,5 @@
 class FeedEntry < ActiveRecord::Base
-  attr_accessible :content, :guid, :title, :author, :published_at, :url, :bitly_link
+  attr_accessible :content, :guid, :title, :author, :published_at, :url, :bitly_link, :in_scheduler, :in_scheduler_since
 
   belongs_to :feed
 

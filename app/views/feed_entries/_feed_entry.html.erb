@@ -6,4 +6,7 @@
   <td><%= feed_entry.author %></td>
   <td><%= feed_entry.published_at %></td>
   <td><%= feed_entry.content %></td>
+  <td id="publish-button-<%= feed_entry.id -%>">
+    <%= feed_entry.publish_button %>
+  </td>
 </tr>

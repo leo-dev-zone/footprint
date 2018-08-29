@@ -18,4 +18,16 @@ class FeedEntryDecorator < Draper::Base
   def feed_title
     feed_entry.feed.title.sub('Google Alerts - ', '')
   end
+
+  def sent_at
+    feed_entry.sent_at || 'not sent yet'
+  end
+
+  def publish_button
+    if !feed_entry.in_scheduler
+      h.button_to 'Publish', h.publish_feed_entry_path(feed_entry), remote: true
+    else
+      h.button_to 'Unpublish', h.unpublish_feed_entry_path(feed_entry), remote: true
+    end
+  end
 end

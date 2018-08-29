@@ -2,6 +2,13 @@ Footplate::Application.routes.draw do
   resources :feeds
   resources :users
 
+  resources :feed_entries do
+    member do
+      post 'publish'
+      post 'unpublish'
+    end
+  end
+
   devise_for :users, path: :account
 
   get "home/index"
