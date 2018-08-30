@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 
   has_many :feeds, dependent: :destroy
   has_many :feed_entries, through: :feeds, dependent: :destroy
+  has_one :scheduler
 
   def admin?
     self.role == 'admin'

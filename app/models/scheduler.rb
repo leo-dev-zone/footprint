@@ -4,6 +4,10 @@ class Scheduler < ActiveRecord::Base
   validates :days_of_week, length: {is: 7}
   validates :push_rate_from, :numericality => {only_integer: true, greater_than_or_equal_to: 1.minute, less_than_or_equal_to: 24.hours}
   validates :push_rate_to, :numericality => {only_integer: true, greater_than_or_equal_to: 1.minute, less_than_or_equal_to: 24.hours}
+  validates :user, presence: true
+
+  belongs_to :user
+  has_many :feed_entries, through: :user
 
   before_save do
     self.push_rate_to = self.push_rate_from if self.push_rate_to < self.push_rate_from
