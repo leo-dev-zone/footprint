@@ -5,6 +5,9 @@ class FeedEntry < ActiveRecord::Base
 
   after_create :create_bitly_link_delayed
 
+  scope :pushing_queue, order(:in_scheduler_since)
+  scope :scheduled, where(in_scheduler: true)
+
   def create_bitly_link_delayed
     Delayed::Job.enqueue BitlyShortenUrl.new(id)
   end

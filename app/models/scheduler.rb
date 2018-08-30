@@ -9,13 +9,12 @@ class Scheduler < ActiveRecord::Base
     self.push_rate_to = self.push_rate_from if self.push_rate_to < self.push_rate_from
   end
 
-  def works_today
-    works_in_weekday(Time.zone.now.wday)
+  after_save do
+    initialize_scheduler_queue_if_needed
   end
 
-  def in_pushing_range(time = Time.zone.now)
-    from, to = push_range_for_today
-    from <= time && time <= to
+  def can_send?(time)
+    can_send_in_weekday?(time.wday) && in_pushing_range?(time)
   end
 
   def randomized_delay
@@ -24,15 +23,27 @@ class Scheduler < ActiveRecord::Base
 
   private
 
-  def works_in_weekday(wday)
+  def can_send_in_weekday?(wday)
     days_of_week[wday] == '1' ? true : false
   end
 
-  def push_range_for_today
-    now = Time.zone.now
-    %w(from to).map do |constraint| Time.zone.parse(
-      "#{now.strftime('%Y-%m-%d')}T#{send(:"push_at_#{constraint}").strftime('%H:%M:%S')}#{now.strftime('%z')}",
+  def in_pushing_range?(time)
+    from, to = %w(from to).map do |constraint| Time.zone.parse(
+      "#{time.strftime('%Y-%m-%d')}T#{send(:"push_at_#{constraint}").strftime('%H:%M:%S')}#{time.strftime('%z')}",
       '%Y-%m-%dT%H:%M:%S%z')
+    end
+    from <= time && time <= to
+  end
+
+  class << self
+    def enqueue(run_at)
+      Delayed::Job.enqueue(SchedulerJob.new, run_at: run_at, queue: 'scheduler')
+    end
+
+    def initialize_scheduler_queue_if_needed
+      if Delayed::Job.where(queue: 'scheduler').count == 0
+        enqueue(Time.zone.now, false)
+      end
     end
   end
 end
