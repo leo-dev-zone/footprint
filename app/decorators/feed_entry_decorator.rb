@@ -25,7 +25,15 @@ class FeedEntryDecorator < Draper::Base
   end
 
   def sent_at
-    feed_entry.sent_at || 'not sent yet'
+    if feed_entry.sent_at
+      feed_entry.sent_at
+    else
+      if feed_entry.enqueued_to_sending
+        "Enqueued to push at #{feed_entry.enqueued_to_sending}"
+      else
+        'not sent yet'
+      end
+    end
   end
 
   def publish_button
