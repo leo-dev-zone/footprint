@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
-gem 'mysql2'
 gem 'jquery-rails'
 gem 'devise'
 gem 'feedzirra'
@@ -23,8 +22,13 @@ end
 
 group :test, :development do
   gem 'pry-rails'
+  gem 'sqlite3'
 end
 
 group :development do
-	gem 'capistrano'
+  gem 'capistrano'
+end
+
+group :production do
+  gem 'mysql2'
 end
