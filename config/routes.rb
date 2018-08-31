@@ -4,10 +4,12 @@ Footplate::Application.routes.draw do
 
   resource :scheduler, only: [:show, :edit, :update]
 
-  resources :feed_entries do
+  resources :feed_entries, only: [:update] do
     member do
       post 'publish'
       post 'unpublish'
+      post 'edit'
+      post 'cancel_edit'
     end
   end
 

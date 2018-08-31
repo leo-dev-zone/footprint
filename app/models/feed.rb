@@ -1,4 +1,6 @@
 class Feed < ActiveRecord::Base
+  include ActionView::Helpers::SanitizeHelper
+
   attr_accessible :title, :url
 
   validates :user, :url, presence: true
@@ -27,7 +29,7 @@ class Feed < ActiveRecord::Base
     feeds = Feedzirra::Feed.fetch_and_parse(Feed.all.map(&:url))
     feeds.each do |url, feed|
       Feed.find_by_url(url).tap do |db_feed|
-        db_feed.update_attributes(title: feed.title.sanitize)
+        db_feed.update_attributes(title: sanitize(feed.title))
         db_feed.send(:add_entries, feed.entries)
       end
     end
@@ -40,9 +42,9 @@ class Feed < ActiveRecord::Base
       entry_guid = entry.id.split('/').last
       unless feed_entries.exists?(guid: entry_guid)
         feed_entries.create!(
-          title: entry.title.sanitize,
-          content: entry.content.sanitize,
-          author: entry.author.sanitize,
+          title: sanitize(entry.title),
+          content: sanitize(entry.content),
+          author: sanitize(entry.author),
           url: entry.url.gsub('&#38;', '&'),
           published_at: entry.published,
           guid: entry_guid

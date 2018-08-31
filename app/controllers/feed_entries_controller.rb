@@ -1,6 +1,22 @@
 class FeedEntriesController < ApplicationController
-  load_and_authorize_resource :feed_entry, only: [:publish, :unpublish]
+  load_and_authorize_resource :feed_entry, only: [:edit, :cancel_edit, :update, :publish, :unpublish]
   respond_to :js
+
+  def edit
+    @feed_entry = FeedEntryDecorator.decorate(@feed_entry)
+    respond_with(@feed_entry)
+  end
+
+  def cancel_edit
+    @feed_entry = FeedEntryDecorator.decorate(@feed_entry)
+    render 'update'
+  end
+
+  def update
+    @feed_entry = FeedEntryDecorator.decorate(@feed_entry)
+    @feed_entry.update_attributes(params[:feed_entry])
+    respond_with(@feed_entry)
+  end
 
   def publish
     publish_unpublish(true)
