@@ -1,11 +1,16 @@
 class SchedulerJob
   def perform
     Scheduler.all.each do |scheduler|
-      if true # TODO If no sending enqueued yet for this scheduler
+      if scheduler.feed_entries.enqueued.count == 0
+        delay = scheduler.randomized_delay
 
         if scheduler.can_send?(delay.from_now)
-          # TODO Run sending queue in `delay.from_now` time
-          # TODO And mark as enqueued for sending
+
+          feed_entry = scheduler.feed_entries.scheduled.not_sent.not_enqueued.first_pushed.first
+          if feed_entry
+            Delayed::Job.enqueue(SendingJob.new(feed_entry.id), run_at: delay.from_now, queue: 'sending')
+            feed_entry.update_column(:enqueued_to_sending, true)
+          end
         end
       end
     end

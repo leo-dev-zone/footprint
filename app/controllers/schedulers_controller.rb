@@ -28,7 +28,7 @@ class SchedulersController < ApplicationController
   end
 
   def show
-    @posts = FeedEntryDecorator.decorate(FeedEntry.accessible_by(current_ability).scheduled.pushing_queue)
+    @posts = FeedEntryDecorator.decorate(FeedEntry.accessible_by(current_ability).scheduled.last_pushed)
   end
 
   private
@@ -52,6 +52,6 @@ class SchedulersController < ApplicationController
   end
 
   def convert_days_of_week_params
-    params['scheduler']['days_of_week'] = params['days'].inject('0000000') { |_, day| _[day.to_i] = '1'; _ }
+    params['scheduler']['days_of_week'] = (params['days'] || []).inject('0000000') { |_, day| _[day.to_i] = '1'; _ }
   end
 end
