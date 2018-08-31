@@ -2,6 +2,8 @@ Footplate::Application.routes.draw do
   resources :feeds
   resources :users
 
+  resource :scheduler, only: [:show, :edit, :update]
+
   resources :feed_entries do
     member do
       post 'publish'

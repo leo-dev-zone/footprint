@@ -1,0 +1,8 @@
+<ul>
+  <% Date::DAYNAMES.each_with_index do |dayname, day| %>
+    <li>
+      <%= check_box_tag 'days[]', day, @days[day] %>
+      <%= label_tag dayname %>
+    </li>
+  <% end %>
+</ul>

@@ -14,7 +14,7 @@ class Scheduler < ActiveRecord::Base
   end
 
   after_save do
-    initialize_scheduler_queue_if_needed
+    self.class.initialize_scheduler_queue_if_needed
   end
 
   def can_send?(time)
@@ -46,7 +46,7 @@ class Scheduler < ActiveRecord::Base
 
     def initialize_scheduler_queue_if_needed
       if Delayed::Job.where(queue: 'scheduler').count == 0
-        enqueue(Time.zone.now, false)
+        enqueue(Time.zone.now)
       end
     end
   end

@@ -6,7 +6,7 @@ class FeedEntry < ActiveRecord::Base
 
   after_create :create_bitly_link_delayed
 
-  scope :pushing_queue, order(:in_scheduler_since)
+  scope :pushing_queue, order('in_scheduler_since DESC')
   scope :scheduled, where(in_scheduler: true)
 
   def create_bitly_link_delayed

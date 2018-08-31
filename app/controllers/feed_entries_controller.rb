@@ -4,10 +4,15 @@ class FeedEntriesController < ApplicationController
 
   def publish
     publish_unpublish(true)
+    render 'publish_status'
   end
 
   def unpublish
     publish_unpublish(false)
+    respond_to do |format|
+      format.html { redirect_to scheduler_path }
+      format.js { render 'publish_status' }
+    end
   end
 
   private
@@ -17,7 +22,6 @@ class FeedEntriesController < ApplicationController
 
     published = @feed_entry.in_scheduler
     @feed_entry.update_attributes(in_scheduler: publish, in_scheduler_since: publish ? Time.zone.now : nil) if publish == !published
-    render 'publish_status'
   end
 
 end

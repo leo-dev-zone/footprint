@@ -15,6 +15,11 @@ class FeedEntryDecorator < Draper::Base
     feed_entry.bitly_link ? h.link_to('Bitly URL', feed_entry.bitly_link) : 'not obtained'
   end
 
+  def title_with_link
+    url = feed_entry.bitly_link
+    url ? h.link_to(title, url) : title
+  end
+
   def feed_title
     feed_entry.feed.title.sub('Google Alerts - ', '')
   end
@@ -29,5 +34,9 @@ class FeedEntryDecorator < Draper::Base
     else
       h.button_to 'Unpublish', h.unpublish_feed_entry_path(feed_entry), remote: true
     end
+  end
+
+  def unpublish_link
+    h.link_to 'Unpublish', h.unpublish_feed_entry_path(feed_entry), method: :post
   end
 end
