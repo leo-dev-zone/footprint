@@ -1,9 +1,0 @@
-<%= paginate @feed_entries %>
-
-<% if @feed_entries.any? %>
-  <%= render partial: 'feed_entries/table', locals: { feed_entries: @feed_entries } %>
-<% else %>
-  <%= link_to 'Create new feed', new_feed_path %>
-<% end %>
-
-<%= paginate @feed_entries %>

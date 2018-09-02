@@ -1,0 +1,11 @@
+%tr
+  %td= feed_entry.title
+  %td= feed_entry.feed_title
+  %td= feed_entry.link_to_original
+  %td= feed_entry.link_to_bitly
+  %td= feed_entry.author
+  %td= feed_entry.published_at
+  %td{:id => "feed-entry-#{feed_entry.id}-body"}
+    = render partial: 'feed_entries/body', locals: { feed_entry: feed_entry }
+  %td{:id => "publish-button-#{feed_entry.id}"}
+    = feed_entry.publish_button

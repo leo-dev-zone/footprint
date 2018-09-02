@@ -1,0 +1,7 @@
+%h1 Scheduler
+= render 'info_links'
+%h2 Scheduled posts
+- if @posts.any?
+  = render partial: 'posts_table', locals: { posts: @posts }
+- else
+  %h3 Nothing scheduled

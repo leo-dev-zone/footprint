@@ -1,0 +1,13 @@
+%p#notice= notice
+%p
+  %b Title:
+  = @feed.title
+%p
+  %b User:
+  = @feed.user_id
+%p
+  %b Url:
+  = @feed.url
+= link_to 'Edit', edit_feed_path(@feed)
+|
+\#{link_to 'Back', feeds_path}

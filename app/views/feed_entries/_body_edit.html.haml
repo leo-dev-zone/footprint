@@ -1,0 +1,4 @@
+= form_for feed_entry, remote: true do |f|
+  = f.text_area :content, rows: 5
+  = f.submit
+= button_to 'Cancel', cancel_edit_feed_entry_path(feed_entry), remote: true

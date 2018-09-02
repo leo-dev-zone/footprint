@@ -1,0 +1,32 @@
+= form_for(@user) do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@user.errors.count, "error")
+        prohibited this user from being saved:
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :email
+    %br/
+    = f.text_field :email
+  - if current_user.admin?
+    .field
+      = f.label :role
+      %br/
+      = f.select :role, ['user', 'admin']
+  .field
+    = f.label :bitly_username
+    %br/
+    = f.text_field :bitly_username
+  .field
+    = f.label :bitly_apikey
+    %br/
+    = f.text_field :bitly_apikey
+  .field
+    = f.label :password
+    %br/
+    = f.text_field :password
+  .actions
+    = f.submit

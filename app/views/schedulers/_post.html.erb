@@ -1,9 +1,0 @@
-<tr>
-  <td><%= post.title_with_link %></td>
-  <td id="feed-entry-<%= post.id -%>-body">
-    <%= render partial: 'feed_entries/body', locals: { feed_entry: post } %>
-  </td>
-  <td><%= post.sent_at %></td>
-  <td><%= post.unpublish_link %>
-  </td>
-</tr>

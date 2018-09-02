@@ -219,6 +219,7 @@ DEPENDENCIES
   devise
   draper
   feedzirra
+  haml
   jquery-rails
   kaminari
   mysql2
