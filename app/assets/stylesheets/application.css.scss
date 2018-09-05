@@ -24,6 +24,21 @@ ul.menu {
   }
 }
 
-table.posts, table.posts td {
-  border: 1px solid black;
+table {
+	border-collapse: collapse;
+	margin: auto;
+	width: 100%;
+}
+
+table.posts {
+	padding: 10px;
+}
+
+table.posts td {
+  border-top: 3px solid #eee;
+	padding: 5px;
+}
+
+.right {
+	float: right;
 }

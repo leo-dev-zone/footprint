@@ -15,6 +15,8 @@ Footplate::Application.routes.draw do
 
   devise_for :users, path: :account
 
+  match '/feed' => 'home#feed'
+  
   get "home/index"
   root :to => 'home#index'
 

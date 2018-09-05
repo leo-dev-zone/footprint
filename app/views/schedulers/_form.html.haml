@@ -1,29 +1,44 @@
 = form_for @scheduler, url: scheduler_path, method: :put do |f|
-  - if @scheduler.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@scheduler.errors.count, "error")
-        prohibited this feed from being saved:
-      %ul
-        - @scheduler.errors.full_messages.each do |msg|
-          %li= msg
-  .field
-    = render 'day_of_week_picker'
-  .field
-    = f.label :push_at_from
-    %br/
-    = f.time_select(:push_at_from, ampm: true)
-  .field
-    = f.label :push_at_to
-    %br/
-    = f.time_select(:push_at_to, ampm: true)
-  #push-rate-from.field
-    = f.label 'Push rate from'
-    %br/
-    = select_time @push_rate_from, prefix: 'push_rate_from_widget'
-  #push-rate-to.field
-    = f.label 'Push rate to'
-    %br/
-    = select_time @push_rate_to, prefix: 'push_rate_to_widget'
-  .actions
-    = f.submit
+	- if @scheduler.errors.any?
+		#error_explanation
+			%h2
+				= pluralize(@scheduler.errors.count, "error")
+				prohibited this feed from being saved:
+			%ul
+				- @scheduler.errors.full_messages.each do |msg|
+					%li= msg
+	.grid_4
+		%hr
+		%h2 Step 1. Days
+		%p Choose what days you would like to have your posts published.
+		.field
+			= render 'day_of_week_picker'
+	.grid_4
+		%hr
+		%h2 Step 2. Range
+		%p Choose the time range you would like to have your posts published.
+		.field
+			= f.label :push_from
+			%br/
+			= f.time_select(:push_at_from, ampm: true)
+		.field
+			= f.label :push_to
+			%br/
+			= f.time_select(:push_at_to, ampm: true)
+	.grid_4
+		%hr
+		%h2 Step 3. Rate
+		%p 
+			Choose the rate in which your posts are pushed. 
+			Note: Posts are pushed randomly within a set timeframe.
+		#push-rate-from.field
+			= f.label 'Push between'
+			%br/
+			= select_time @push_rate_from, prefix: 'push_rate_from_widget'
+		#push-rate-to.field
+			= f.label 'to'
+			%br/
+			= select_time @push_rate_to, prefix: 'push_rate_to_widget'
+		.actions
+	.grid_12
+		= f.submit

@@ -1,6 +1,6 @@
-%h1 Scheduler
-= render 'info_links'
-%h2 Scheduled posts
+%h2.inline Scheduler
+.button.inline= render 'info_links'
+
 - if @posts.any?
   = render partial: 'posts_table', locals: { posts: @posts }
 - else
