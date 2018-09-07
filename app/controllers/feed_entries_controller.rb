@@ -19,12 +19,13 @@ class FeedEntriesController < ApplicationController
   end
 
   def publish
-    publish_unpublish(true)
+    publish_unpublish(@feed_entry, true)
+    @feed_entry.create_bitly_link_delayed
     render 'publish_status'
   end
 
   def unpublish
-    publish_unpublish(false)
+    publish_unpublish(@feed_entry, false)
     respond_to do |format|
       format.html { redirect_to scheduler_path }
       format.js { render 'publish_status' }
@@ -33,8 +34,8 @@ class FeedEntriesController < ApplicationController
 
   private
 
-  def publish_unpublish(publish)
-    @feed_entry = FeedEntryDecorator.decorate(@feed_entry)
+  def publish_unpublish(feed_entry, publish)
+    @feed_entry = FeedEntryDecorator.decorate(feed_entry)
 
     published = @feed_entry.in_scheduler
     @feed_entry.update_attributes(in_scheduler: publish, in_scheduler_since: publish ? Time.zone.now : nil) if publish == !published

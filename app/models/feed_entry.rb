@@ -5,8 +5,6 @@ class FeedEntry < ActiveRecord::Base
   belongs_to :feed
   belongs_to :scheduler
 
-  after_create :create_bitly_link_delayed
-
   scope :first_pushed, order('in_scheduler_since')
   scope :last_pushed, order('in_scheduler_since DESC')
   scope :scheduled, where(in_scheduler: true)
