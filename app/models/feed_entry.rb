@@ -1,6 +1,6 @@
 class FeedEntry < ActiveRecord::Base
   attr_accessible :content, :guid, :title, :author, :published_at, :url, :bitly_link,
-    :in_scheduler, :in_scheduler_since, :sent_at, :enqueued_to_sending
+    :image_url, :in_scheduler, :in_scheduler_since, :sent_at, :enqueued_to_sending
 
   belongs_to :feed
   belongs_to :scheduler
@@ -26,5 +26,10 @@ class FeedEntry < ActiveRecord::Base
 
   def user
     feed.user
+  end
+
+  def self.parse_image_url(body)
+    img = Nokogiri::HTML(body).search('img')
+    img.attr('src').value if img.any?
   end
 end

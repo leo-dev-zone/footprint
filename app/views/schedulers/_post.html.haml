@@ -1,13 +1,11 @@
 %tr
-	/%td= post.title_with_link
-	%td
-		.button= post.unpublish_link
-	%td.ready
-		= post.title
-		%a.link
-			= post.bitly_link
-	/
-		%td{:id => "feed-entry-#{post.id}-body"}
-			= render partial: 'feed_entries/body', locals: { feed_entry: post }
-	%td
-		.highlight= post.sent_at
+  %td
+    .button= post.unpublish_link
+  %td.ready
+    = post.title
+    = link_to *[post.bitly_link]*2, target: '_blank'
+    /
+      %td{:id => "feed-entry-#{post.id}-body"}
+        = render partial: 'feed_entries/body', locals: { feed_entry: post }
+  %td
+    .highlight= post.sent_at

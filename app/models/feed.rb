@@ -45,6 +45,7 @@ class Feed < ActiveRecord::Base
           title: sanitize(entry.title),
           content: sanitize(entry.content),
           author: sanitize(entry.author),
+          image_url: FeedEntry.parse_image_url(entry.content),
           url: entry.url.gsub('&#38;', '&'),
           published_at: entry.published,
           guid: entry_guid

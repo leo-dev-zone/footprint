@@ -8,20 +8,20 @@ class FeedEntryDecorator < Draper::Base
   end
 
   def link_to_original
-    h.link_to 'Original URL', feed_entry.url
+    h.link_to 'Original URL', feed_entry.url, target: '_blank'
   end
 
   def link_to_bitly
-    feed_entry.bitly_link ? h.link_to('Bitly URL', feed_entry.bitly_link) : 'not obtained'
+    feed_entry.bitly_link ? h.link_to('Bitly URL', feed_entry.bitly_link, target: '_blank') : 'not obtained'
   end
 
   def title_with_link
     url = feed_entry.bitly_link
-    url ? h.link_to(title, url) : title
+    url ? h.link_to(title, url, target: '_blank') : title
   end
 
   def feed_title
-    feed_entry.feed.title.sub('Google Alerts - ', '')
+    h.sanitize(feed_entry.feed.title.sub('Google Alerts - ', ''))
   end
 
   def sent_at

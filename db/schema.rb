@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120830191831) do
+ActiveRecord::Schema.define(:version => 20120907164813) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20120830191831) do
     t.datetime "sent_at"
     t.datetime "in_scheduler_since"
     t.boolean  "enqueued_to_sending", :default => false
+    t.string   "image_url"
   end
 
   create_table "feeds", :force => true do |t|

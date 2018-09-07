@@ -13,6 +13,7 @@ gem 'delayed_job_web'
 gem 'daemons'
 gem 'kaminari'
 gem 'haml'
+gem 'nokogiri'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
