@@ -2,9 +2,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :rememberable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :bitly_username, :bitly_apikey
+  attr_accessible :email, :password, :password_confirmation, :remember_me,
+    :bitly_username, :bitly_apikey
 
-  validates :email, :bitly_username, :bitly_apikey, presence: true
+  validates :email, presence: true
   validates :email, :uniqueness => true
   validates :role, :inclusion => { :in => %w(user admin) }
 

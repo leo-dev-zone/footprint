@@ -13,13 +13,5 @@
     = f.label :password_confirmation
     %br/
     = f.password_field :password_confirmation
-  %div
-    = f.label :bitly_username
-    %br/
-    = f.text_field :bitly_username
-  %div
-    = f.label :bitly_apikey
-    %br/
-    = f.text_field :bitly_apikey
   %div= f.submit "Sign up"
 = render "devise/shared/links"
