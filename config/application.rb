@@ -67,7 +67,6 @@ module Footplate
 
     config.after_initialize do
       ActionView::Base.sanitized_allowed_tags.clear
-      ActionView::Base.sanitized_allowed_tags = 'b', 'em', 'a'
     end
   end
 end

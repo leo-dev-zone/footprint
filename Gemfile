@@ -14,6 +14,8 @@ gem 'daemons'
 gem 'kaminari'
 gem 'haml'
 gem 'nokogiri'
+gem 'oauth'
+gem 'linkedin'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

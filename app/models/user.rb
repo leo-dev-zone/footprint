@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
   has_many :feeds, dependent: :destroy
   has_many :feed_entries, through: :feeds, dependent: :destroy
   has_one :scheduler
+  has_one :twitter, dependent: :destroy, class_name: 'AppAccounts::Twitter'
+  has_one :linkedin, dependent: :destroy, class_name: 'AppAccounts::Linkedin'
+  has_one :facebook, dependent: :destroy, class_name: 'AppAccounts::Facebook'
 
   def admin?
     self.role == 'admin'
