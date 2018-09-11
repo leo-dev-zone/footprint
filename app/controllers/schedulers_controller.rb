@@ -28,6 +28,8 @@ class SchedulersController < ApplicationController
   end
 
   def show
+    @scheduler = current_user.scheduler
+    @only_app = params[:app].try(:to_sym)
     @posts = FeedEntryDecorator.decorate(FeedEntry.accessible_by(current_ability).scheduled.last_pushed)
   end
 

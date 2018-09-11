@@ -1,1 +1,1 @@
-$("#publish-button-#{@feed_entry.id}").html("#{j @feed_entry.publish_button}");
+$("#publish-buttons-#{@feed_entry.id}").html("#{j render 'feed_entries/buttons', feed_entry: @feed_entry}");

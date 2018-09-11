@@ -1,5 +1,7 @@
 module AppAccounts
   class AppAccount < ActiveRecord::Base
+    APPS = [:twitter, :facebook, :linkedin]
+
     attr_accessible :oauth_token, :oauth_token_secret, :oauth_session_handle, :user
 
     belongs_to :user

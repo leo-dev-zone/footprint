@@ -1,7 +1,16 @@
 %h2.inline Scheduler
 .button.inline= render 'info_links'
+%br/
+
+.button.inline= link_to "All", scheduler_path
+- AppAccounts::AppAccount::APPS.each do |app|
+  .button.inline= link_to app.to_s.capitalize, scheduler_path(app: app)
 
 - if @posts.any?
-  = render partial: 'posts_table', locals: { posts: @posts }
+  - @posts.each do |post|
+    - all_microformats(post, @only_app) do |partial|
+      = render(partial, feed_entry: post)
+      %br/
+      %br/
 - else
   %h3 Nothing scheduled

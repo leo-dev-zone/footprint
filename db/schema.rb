@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120907193148) do
+ActiveRecord::Schema.define(:version => 20120911185449) do
 
   create_table "app_accounts", :force => true do |t|
     t.string   "oauth_token"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20120907193148) do
     t.datetime "in_scheduler_since"
     t.boolean  "enqueued_to_sending", :default => false
     t.string   "image_url"
+    t.text     "publish_to"
   end
 
   create_table "feeds", :force => true do |t|

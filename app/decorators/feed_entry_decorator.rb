@@ -36,11 +36,13 @@ class FeedEntryDecorator < Draper::Base
     end
   end
 
-  def publish_button
-    if !feed_entry.in_scheduler
-      h.button_to 'Publish', h.publish_feed_entry_path(feed_entry), remote: true
+  def publish_button(application = nil)
+    text = application ? application.to_s : 'all'
+
+    if !feed_entry.in_scheduler || (application && !feed_entry.publish_to[application])
+      h.button_to "Publish to #{text}", h.publish_feed_entry_path(feed_entry, app: application), remote: true
     else
-      h.button_to 'Unpublish', h.unpublish_feed_entry_path(feed_entry), remote: true
+      h.button_to "Unpublish from #{text}", h.unpublish_feed_entry_path(feed_entry, app: application), remote: true
     end
   end
 

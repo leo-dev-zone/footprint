@@ -12,5 +12,6 @@
     .title= feed_entry.title
     .body_edit{:id => "feed-entry-#{feed_entry.id}-body"}
       = render partial: 'feed_entries/body', locals: { feed_entry: feed_entry }
-  %td.publish{:id => "publish-button-#{feed_entry.id}"}
-    = feed_entry.publish_button
+
+  %td{id: "publish-buttons-#{feed_entry.id}", class: 'publish'}
+    = render 'feed_entries/buttons', feed_entry: feed_entry
