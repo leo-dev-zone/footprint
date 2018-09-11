@@ -6,3 +6,6 @@ twitter_api_secret: 'secret'
 
 facebook_api_key: 'key'
 facebook_api_secret: 'secret'
+
+application_url: 'http://some_url.com'
+via:  'whatever'

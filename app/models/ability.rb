@@ -10,6 +10,7 @@ class Ability
       can :manage, Feed, user_id: user.id
       can :manage, FeedEntry, feed: { user_id: user.id }
       can :manage, Scheduler, user_id: user.id
+      can :authorize, :twitter
     end
   end
 end

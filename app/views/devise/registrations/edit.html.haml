@@ -29,6 +29,18 @@
     %br/
     = f.password_field :current_password
   %div= f.submit "Update"
+
+  %p
+    = link_to 'Authorize with twitter', authorize_twitter_path
+    %span= app_status(current_user, :twitter)
+    %br/
+    = link_to 'Authorize with facebook', authorize_facebook_path
+    %span= app_status(current_user, :facebook)
+    %br/
+    = link_to 'Authorize with linkedin', authorize_linkedin_path
+    %span= app_status(current_user, :linkedin)
+    %br/
+
 %h3 Cancel my account
 %p
   Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete}.

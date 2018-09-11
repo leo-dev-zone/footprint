@@ -16,6 +16,8 @@ gem 'haml'
 gem 'nokogiri'
 gem 'oauth'
 gem 'linkedin'
+gem 'fb_graph'
+gem 'twitter', github: 'sferik/twitter'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

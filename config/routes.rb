@@ -16,9 +16,18 @@ Footplate::Application.routes.draw do
   devise_for :users, path: :account
 
   match '/feed' => 'home#feed'
-  
+
   get "home/index"
   root :to => 'home#index'
+
+  get 'authorize/twitter'
+  get 'authorize/twitter_callback'
+
+  get 'authorize/facebook'
+  get 'authorize/facebook_callback'
+
+  get 'authorize/linkedin'
+  get 'authorize/linkedin_callback'
 
   match "/delayed_job" => DelayedJobWeb, :anchor => false
 end

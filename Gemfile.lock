@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/sferik/twitter.git
+  revision: 0859ad34354bc5cf571f710d604a1edeba1b2e49
+  specs:
+    twitter (3.7.0)
+      faraday (~> 0.8)
+      multi_json (~> 1.3)
+      simple_oauth (~> 0.1.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -29,6 +38,7 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     arel (3.0.2)
+    attr_required (0.0.5)
     bcrypt-ruby (3.0.1)
     bitly (0.8.0)
       crack (>= 0.1.4)
@@ -77,6 +87,10 @@ GEM
       multi_json (~> 1.0)
     faraday (0.8.1)
       multipart-post (~> 1.1)
+    fb_graph (2.4.20)
+      httpclient (>= 2.2.0.2)
+      rack-oauth2 (>= 0.14.4)
+      tzinfo
     feedzirra (0.0.31)
       activesupport (>= 3.0.8)
       builder (~> 3.0.0)
@@ -95,6 +109,7 @@ GEM
       multi_json (~> 1.0)
       multi_xml
     httpauth (0.1)
+    httpclient (2.2.7)
     i18n (0.6.0)
     journey (1.0.4)
     jquery-rails (2.1.1)
@@ -151,6 +166,13 @@ GEM
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
+    rack-oauth2 (0.14.9)
+      activesupport (>= 2.3)
+      attr_required (>= 0.0.5)
+      httpclient (>= 2.2.0.2)
+      i18n
+      multi_json (>= 1.3.6)
+      rack (>= 1.1)
     rack-protection (1.2.0)
       rack
     rack-ssl (1.3.2)
@@ -183,6 +205,7 @@ GEM
       tilt (~> 1.3)
     sax-machine (0.0.20)
       nokogiri (> 0.0.0)
+    simple_oauth (0.1.9)
     sinatra (1.3.3)
       rack (~> 1.3, >= 1.3.6)
       rack-protection (~> 1.2)
@@ -224,6 +247,7 @@ DEPENDENCIES
   delayed_job_web
   devise
   draper
+  fb_graph
   feedzirra
   haml
   jquery-rails
@@ -237,5 +261,6 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   sqlite3
   therubyracer
+  twitter!
   uglifier (>= 1.0.3)
   unicorn

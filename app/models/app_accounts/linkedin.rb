@@ -12,10 +12,10 @@ module AppAccounts
     def post(feed_entry)
       feed_entry = FeedEntryDecorator.decorate(feed_entry)
       share = {
-        :title => feed_entry.title,
+        :title => feed_entry.title.to_str,
         :content => {
           :'submitted-url' => feed_entry.bitly_link,
-          :'description' => feed_entry.content[0...256]
+          :'description' => feed_entry.content[0...256].to_str
         }
       }
       share[:content].merge!(:'submitted-image-url' => feed_entry.image_url) if feed_entry.image_url.present?
