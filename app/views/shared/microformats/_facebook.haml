@@ -1,0 +1,12 @@
+%table
+  %tr
+    %td= feed_entry.content
+  %tr
+    %td= feed_entry.bitly_link
+  %tr
+    %td= feed_entry.author
+  %tr
+    %td= feed_entry.title
+  - if feed_entry.image_url.present?
+    %tr
+      %td= image_tag feed_entry.image_url

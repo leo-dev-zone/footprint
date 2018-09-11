@@ -47,4 +47,11 @@ class FeedEntryDecorator < Draper::Base
   def unpublish_link
     h.link_to 'Unpublish', h.unpublish_feed_entry_path(feed_entry), method: :post
   end
+
+  def twitter_body
+    link = feed_entry.bitly_link || ''
+    via = 'via @' + APP_CONFIG['via']
+    body_len = 140 - via.size - link.size - 5
+    "#{feed_entry.content[0...body_len].to_str}... #{link} #{via}"
+  end
 end
