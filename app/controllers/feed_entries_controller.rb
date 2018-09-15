@@ -42,7 +42,7 @@ class FeedEntriesController < ApplicationController
     attributes = {}
 
     if publish
-      attributes.merge!(in_scheduler: true, in_scheduler_since: Time.zone.now)
+      attributes.merge!(in_scheduler: true, in_scheduler_since: Time.zone.now, sent_at: nil)
       if app.nil?
         attributes.merge!(publish_to: AppAccounts::AppAccount::APPS.inject({}) { |_, app| _.merge(app.to_sym => true) })
       else

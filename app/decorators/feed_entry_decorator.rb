@@ -29,7 +29,7 @@ class FeedEntryDecorator < Draper::Base
       feed_entry.sent_at
     else
       if feed_entry.enqueued_to_sending
-        "Enqueued to push at #{feed_entry.enqueued_to_sending}"
+        "enqueued - #{feed_entry.enqueued_to_sending_at}"
       else
         'not sent yet'
       end
@@ -50,10 +50,10 @@ class FeedEntryDecorator < Draper::Base
     h.link_to 'Unpublish', h.unpublish_feed_entry_path(feed_entry), method: :post
   end
 
-  def twitter_body
+  def twitter_body(reserved_chars = 0)
     link = feed_entry.bitly_link || ''
     via = 'via @' + APP_CONFIG['via']
-    body_len = 140 - via.size - link.size - 5
+    body_len = 140 - reserved_chars - via.size - link.size - 5
     "#{feed_entry.content[0...body_len].to_str}... #{link} #{via}"
   end
 end

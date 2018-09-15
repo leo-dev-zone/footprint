@@ -8,8 +8,9 @@ class SchedulerJob
 
           feed_entry = scheduler.feed_entries.scheduled.not_sent.not_enqueued.first_pushed.first
           if feed_entry
+            pp "ID #{feed_entry.id} added to the queue"
             Delayed::Job.enqueue(SendingJob.new(feed_entry.id), run_at: delay.from_now, queue: 'sending')
-            feed_entry.update_column(:enqueued_to_sending, true)
+            feed_entry.update_attributes(enqueued_to_sending: true, enqueued_to_sending_at: delay.from_now)
           end
         end
       end

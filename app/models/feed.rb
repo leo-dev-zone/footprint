@@ -42,9 +42,9 @@ class Feed < ActiveRecord::Base
       entry_guid = entry.id.split('/').last
       unless feed_entries.exists?(guid: entry_guid)
         feed_entries.create!(
-          title: sanitize(entry.title),
-          content: sanitize(entry.content),
-          author: sanitize(entry.author),
+          title: sanitize(entry.title) || '',
+          content: sanitize(entry.content) || sanitize(entry.summary) || '',
+          author: sanitize(entry.author) || '',
           image_url: FeedEntry.parse_image_url(entry.content),
           url: entry.url.gsub('&#38;', '&'),
           published_at: entry.published,

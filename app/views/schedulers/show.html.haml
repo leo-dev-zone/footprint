@@ -9,7 +9,11 @@
 - if @posts.any?
   - @posts.each do |post|
     - all_microformats(post, @only_app) do |partial|
-      = render(partial, feed_entry: post)
+      %div
+        %b
+          Sent at:
+          = post.sent_at
+        = render(partial, feed_entry: post)
       %br/
       %br/
 - else

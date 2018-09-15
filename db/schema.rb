@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120911185449) do
+ActiveRecord::Schema.define(:version => 20120914112253) do
 
   create_table "app_accounts", :force => true do |t|
     t.string   "oauth_token"
@@ -46,17 +46,18 @@ ActiveRecord::Schema.define(:version => 20120911185449) do
     t.datetime "published_at"
     t.string   "guid"
     t.integer  "feed_id"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "author"
     t.string   "bitly_link"
     t.boolean  "published"
-    t.boolean  "in_scheduler",        :default => false
+    t.boolean  "in_scheduler",           :default => false
     t.datetime "sent_at"
     t.datetime "in_scheduler_since"
-    t.boolean  "enqueued_to_sending", :default => false
+    t.boolean  "enqueued_to_sending",    :default => false
     t.string   "image_url"
     t.text     "publish_to"
+    t.datetime "enqueued_to_sending_at"
   end
 
   create_table "feeds", :force => true do |t|

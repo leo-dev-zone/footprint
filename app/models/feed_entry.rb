@@ -1,6 +1,7 @@
 class FeedEntry < ActiveRecord::Base
   attr_accessible :content, :guid, :title, :author, :published_at, :url, :bitly_link,
-    :image_url, :in_scheduler, :in_scheduler_since, :sent_at, :enqueued_to_sending, :publish_to
+    :image_url, :in_scheduler, :in_scheduler_since, :sent_at,
+    :enqueued_to_sending, :enqueued_to_sending_at, :publish_to
 
   serialize :publish_to, Hash
 

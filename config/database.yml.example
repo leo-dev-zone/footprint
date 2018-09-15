@@ -2,13 +2,13 @@ development:
   adapter: sqlite3
   database: db/development.sqlite3
   pool: 5
-  timeout: 5000
+  timeout: 20000
 
 test:
   adapter: sqlite3
   database: db/test.sqlite3
   pool: 5
-  timeout: 5000
+  timeout: 20000
 
 production:
   adapter: mysql2
