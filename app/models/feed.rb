@@ -41,12 +41,14 @@ class Feed < ActiveRecord::Base
     entries.each do |entry|
       entry_guid = entry.id.split('/').last
       unless feed_entries.exists?(guid: entry_guid)
+        coder = HTMLEntities.new
+
         feed_entries.create!(
-          title: sanitize(entry.title) || '',
-          content: sanitize(entry.content) || sanitize(entry.summary) || '',
-          author: sanitize(entry.author) || '',
+          title: sanitize(coder.decode(entry.title)),
+          content: sanitize(coder.decode(entry.content || entry.summary)),
+          author: sanitize(coder.decode(entry.author)),
           image_url: FeedEntry.parse_image_url(entry.content),
-          url: entry.url.gsub('&#38;', '&'),
+          url: coder.decode(entry.url),
           published_at: entry.published,
           guid: entry_guid
         )

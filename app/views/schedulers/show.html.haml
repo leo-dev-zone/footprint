@@ -8,12 +8,14 @@
 
 - if @posts.any?
   - @posts.each do |post|
-    - all_microformats(post, @only_app) do |partial|
+    - all_microformats(post, @only_app) do |partial, app|
       %div
         %b
           Sent at:
           = post.sent_at
         = render(partial, feed_entry: post)
+        - if post.in_scheduler
+          = post.publish_button(app, false)
       %br/
       %br/
 - else

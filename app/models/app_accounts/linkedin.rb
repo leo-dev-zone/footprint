@@ -12,8 +12,8 @@ module AppAccounts
     def post(feed_entry)
       feed_entry = FeedEntryDecorator.decorate(feed_entry)
       share = {
-        :title => feed_entry.title.to_str,
         :content => {
+          :title => feed_entry.title[0...200].to_str,
           :'submitted-url' => feed_entry.bitly_link,
           :'description' => feed_entry.content[0...256].to_str
         }

@@ -105,6 +105,7 @@ GEM
     hashie (1.2.0)
     highline (1.6.13)
     hike (1.2.1)
+    htmlentities (4.3.1)
     httparty (0.8.3)
       multi_json (~> 1.0)
       multi_xml
@@ -250,6 +251,7 @@ DEPENDENCIES
   fb_graph
   feedzirra
   haml
+  htmlentities
   jquery-rails
   kaminari
   linkedin

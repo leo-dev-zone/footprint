@@ -18,6 +18,7 @@ gem 'oauth'
 gem 'linkedin'
 gem 'fb_graph'
 gem 'twitter', github: 'sferik/twitter'
+gem 'htmlentities'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

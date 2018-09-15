@@ -2,7 +2,8 @@ class AuthorizeController < ApplicationController
   skip_authorize_resource
 
   def twitter
-    oauth = AppAccounts::Twitter.first_or_create(user: current_user).client
+    app_account = current_user.twitter || current_user.create_twitter!
+    oauth = app_account.client
 
     url = APP_CONFIG['application_url'] + '/authorize/twitter_callback'
     request_token = oauth.get_request_token(oauth_callback: url)
@@ -30,7 +31,7 @@ class AuthorizeController < ApplicationController
   end
 
   def facebook
-    app_account = AppAccounts::Facebook.first_or_create(user: current_user)
+    app_account = current_user.facebook || current_user.create_facebook!
     oauth = app_account.client
 
     url = APP_CONFIG['application_url'] + '/authorize/facebook_callback'
@@ -63,7 +64,7 @@ class AuthorizeController < ApplicationController
   end
 
   def linkedin_callback
-    app_account = current_user.linkedin
+    app_account = current_user.linkedin || current_user.create_linkedin!
     oauth = app_account.client
 
     request_token = OAuth::RequestToken.new(oauth, session[:linkedin_token],
