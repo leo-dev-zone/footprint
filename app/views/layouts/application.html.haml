@@ -1,7 +1,7 @@
 !!!
 %html
 	%head
-		%title footplate
+		%title boooost - Relay Funnel
 		= stylesheet_link_tag		"application", :media => "all"
 		= javascript_include_tag "application"
 		= csrf_meta_tags
@@ -9,7 +9,7 @@
 		%ul.menu
 			.container_12
 				.grid_12
-					= link_to 'footplate', root_path, :class => "logo"
+					= link_to 'boooost', root_path, :class => "logo"
 					- if current_user
 						- if current_user.admin?
 							%li= link_to 'Feeds', feeds_path
