@@ -8,8 +8,9 @@
         - @feed.errors.full_messages.each do |msg|
           %li= msg
   .field
-    = f.label :url
+    /= f.label :url
     %br/
-    = f.text_field :url
+    .directions Copy and paste 
+	= f.text_field :url
   .actions
     = f.submit

@@ -1,19 +1,21 @@
-%h1 Listing feeds
+%h1.inline 1. Setup
+%h3.inline - Set up as many RSS feeds as you like from all across the web.
+%hr
 %table
   %tr
-    %th Title
-    %th User
-    %th Url
+    %th
+    /%th
     %th
     %th
     %th
+    /%th
   - @feeds.each do |feed|
     %tr
       %td= feed.title
-      %td= feed.user
+      /%td= feed.user
       %td= feed.url
-      %td= link_to 'Show', feed
-      %td= link_to 'Edit', edit_feed_path(feed)
-      %td= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' }
+      /%td= link_to 'Show', feed
+      %td= link_to 'edit', edit_feed_path(feed)
+      %td= link_to 'x', feed, method: :delete, data: { confirm: 'Are you sure?' }
 %br/
-= link_to 'New Feed', new_feed_path
+.button= link_to '+ New Feed', new_feed_path

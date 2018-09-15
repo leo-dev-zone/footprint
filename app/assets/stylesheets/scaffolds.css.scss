@@ -1,6 +1,6 @@
 body {
   background-color: #fff;
-  color: #29221F;
+  color: #555;
   font-family: calibri, verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 1.5em;
@@ -9,9 +9,7 @@ body {
 }
 
 .logo {
-	font-size: 12px;
-	color: #fff;
-	font-weight: bold;
+	margin: 40px 0px 20px 0px;
 }
 
 p, ol, ul, td {
@@ -23,8 +21,24 @@ a {
 	color: #13747D;
 }
 
+.homepage {
+	width: 600px;
+}
+
+h1 {
+	font-size: 33px;
+	line-height: 1.3em;
+	margin: 0px;
+}
+
 h2 {
 	margin-right: 10px;
+}
+
+h3 {
+	margin: 5px 0;
+	font-weight: lighter;
+	line-height: 1.4em;
 }
 
 p {
@@ -38,6 +52,11 @@ hr {
 	border-top: 3px solid #FCF7C5;
 }
 
+td {
+	border-bottom: 3px dotted #eee;
+	padding: 10px;
+}
+
 pre {
   background-color: #eee;
   padding: 10px;
@@ -45,38 +64,54 @@ pre {
 }
 
 .page {
-	margin-top: 60px;
+	margin-top: 50px;
 }
 
 .strip {
 	background: url('/images/colorstrip.jpg');
 	height: 2px;
+	margin-top: 40px;
 }
 
-.menu {
-	width: 100%;
-	background: #0ABFBC;
-	height: 42px;
-	padding: 5px;
-	border-top: 5px solid #13747D;
-	position: fixed;
-	top: 0px;
+.footer {
+	padding: 10px;
+	color: #aaa;
 	
+	.link {
+		margin: 0 0 0 10px;
+		color: #999 !important;
+		text-decoration: none;
+	}
+	.link:hover {
+		text-decoration: underline;
+	}
+}
+
+
+.menu {	
+	ul {
+		list-style-type: none;
+		padding: 0px;
+		margin: 0px;
+
 	li {		
 		a {
 			padding: 10px;
-			color: #fff;
+			color: #13747D;
 			text-decoration: none;
 			font-weight: bold;
 			display: inline-block;
 			font-size: 16px;
-			text-shadow: 0px -1px 0px #13747D;
+			text-shadow: 0px -1px 0px #fff;
 			margin-bottom: 4px;
+			background: #ffe;
+			width: 120px;
 		}
 		
 		a:hover {
-			background: #13747D;
+			background: #eed;
 		}
+	}
 	}
 }
 
@@ -105,9 +140,8 @@ div {
 
 .notice, .alert {
 	background: yellow;
-	position: absolute;
 	z-index: 9999;
-	top: 22px;
+	text-align: center;
 }
 
 .field_with_errors {
@@ -287,14 +321,25 @@ a.logo {
 	color: #fff;
 }
 
+.movie {
+	background: #000;
+	width: 600px;
+	height: 300px;
+	display: block;
+	margin-top: 20px;
+}
+
 .ready {
 	font-size: 16px;
 }
 
+.side_link {
+	margin: 10px 0;
+}
+
 .highlight {
 	background: yellow;
-	float: left;
-	padding: 1px 5px;
+	display: inline-block;
 }
 
 .link {
